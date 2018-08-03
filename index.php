@@ -126,6 +126,6 @@ function getResult($leftOperand, $action, $rightOperand)
     }
 
     if ($actionType === ACTION_TYPE_COMPARISON) {
-        return compareTwoNumbers($leftOperand, $action, $rightOperand);
+        return compareTwoNumbers($leftOperand, $action, $rightOperand) ? 'true' : 'false';
     }
 }
