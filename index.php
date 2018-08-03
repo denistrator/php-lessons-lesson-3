@@ -18,7 +18,7 @@ echo 'Enter right operand: ' . "\n";
 $rightOperand = getUserInput();
 validateNumericOperand($rightOperand);
 
-echo 'Result: ' . getResult($leftOperand, $action, $rightOperand) . "\n";
+echo getResultText($leftOperand, $action, $rightOperand);
 
 function getUserInput()
 {
@@ -128,4 +128,22 @@ function getResult($leftOperand, $action, $rightOperand)
     if ($actionType === ACTION_TYPE_COMPARISON) {
         return compareTwoNumbers($leftOperand, $action, $rightOperand) ? 'true' : 'false';
     }
+}
+
+function getResultText($leftOperand, $action, $rightOperand)
+{
+    $actionType = getActionType($action);
+    $expression = $leftOperand . ' ' . $action . ' ' . $rightOperand;
+    $resultSign = '';
+    $result = getResult($leftOperand, $action, $rightOperand);
+
+    if ($actionType === ACTION_TYPE_CALCULATE) {
+        $resultSign = ' = ';
+    }
+
+    if ($actionType === ACTION_TYPE_COMPARISON) {
+        $resultSign = ' is ';
+    }
+
+    return 'Result: ' . $expression . $resultSign . $result . "\n";
 }
