@@ -3,7 +3,7 @@
 const ALLOWED_ACTIONS = ["+", "-", "*", "/", "**"];
 const ALLOWED_COMPARISONS = ["==", "===", "!=", "<>", "!==", "<", ">", "<=", ">="];
 
-const ACTION_TYPE_ACTION = 'action';
+const ACTION_TYPE_CALCULATE = 'calculate';
 const ACTION_TYPE_COMPARISON = 'comparison';
 
 echo 'Enter left operand:' . "\n";
@@ -28,7 +28,7 @@ function getUserInput()
 function getActionType($action)
 {
     if (in_array($action, ALLOWED_ACTIONS)) {
-        return ACTION_TYPE_ACTION;
+        return ACTION_TYPE_CALCULATE;
     }
 
     if (in_array($action, ALLOWED_COMPARISONS)) {
@@ -121,7 +121,7 @@ function getResult($leftOperand, $action, $rightOperand)
 {
     $actionType = getActionType($action);
 
-    if ($actionType === ACTION_TYPE_ACTION) {
+    if ($actionType === ACTION_TYPE_CALCULATE) {
         return calcTwoNumbers($leftOperand, $action, $rightOperand);
     }
 
